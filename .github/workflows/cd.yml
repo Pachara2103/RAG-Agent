@@ -1,0 +1,36 @@
+name: Manual Deploy to EC2
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'ระบุ Version (เช่น 1.0)'
+        required: true
+        default: 'latest'
+      host:
+        description: 'ระบุ host ip'
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ inputs.host }}
+          username: "ubuntu"
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            echo "Deploying version: ${{ inputs.version }}"
+            
+            sudo docker stop adaptive-crag-agent || true
+            sudo docker rm adaptive-crag-agent || true
+
+            sudo docker system prune -a -f
+            
+            sudo docker pull user2103/adaptive-crag-agent:${{ inputs.version }}
+            sudo docker run -d --name adaptive-crag-agent -p 2103:8501 user2103/adaptive-crag-agent:${{ inputs.version }}
+
+            
+            

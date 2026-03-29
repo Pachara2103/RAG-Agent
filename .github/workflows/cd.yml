@@ -24,13 +24,13 @@ jobs:
           script: |
             echo "Deploying version: ${{ inputs.version }}"
             
-            sudo docker stop RAG-System || true
-            sudo docker rm RAG-System || true
+            sudo docker stop rag-system || true
+            sudo docker rm rag-system || true
 
             sudo docker system prune -a -f
             
-            sudo docker pull user2103/RAG-System-v${{ inputs.version }}
-            sudo docker run -d --name RAG-System -p 2103:8501 user2103/RAG-System-v${{ inputs.version }}
+            sudo docker pull user2103/rag-system-v${{ inputs.version }}
+            sudo docker run -d --name rag-system -p 2103:8501 user2103/rag-system-v${{ inputs.version }}
 
             
             

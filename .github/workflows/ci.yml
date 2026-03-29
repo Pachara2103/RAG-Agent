@@ -21,9 +21,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t user2103/RAG-System-v${{inputs.version}} .
+        run: docker build -t user2103/rag-system-v${{inputs.version}} .
 
       - name: Push to Dockerhub
-        run: docker push user2103/RAG-System-v${{inputs.version}}
+        run: docker push user2103/rag-system-v${{inputs.version}}
 
           

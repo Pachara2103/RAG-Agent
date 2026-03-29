@@ -24,13 +24,13 @@ jobs:
           script: |
             echo "Deploying version: ${{ inputs.version }}"
             
-            sudo docker stop adaptive-crag-agent || true
-            sudo docker rm adaptive-crag-agent || true
+            sudo docker stop RAG-System || true
+            sudo docker rm RAG-System || true
 
             sudo docker system prune -a -f
             
-            sudo docker pull user2103/adaptive-crag-agent:${{ inputs.version }}
-            sudo docker run -d --name adaptive-crag-agent -p 2103:8501 user2103/adaptive-crag-agent:${{ inputs.version }}
+            sudo docker pull user2103/RAG-System-v${{ inputs.version }}
+            sudo docker run -d --name RAG-System -p 2103:8501 user2103/RAG-System-v${{ inputs.version }}
 
             
             

@@ -1,3 +1,4 @@
 myenv
 note.txt
 .env
+src\__pycache__

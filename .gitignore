@@ -2,3 +2,4 @@ myenv
 note.txt
 .env
 src\__pycache__
+rag key pair.pem
